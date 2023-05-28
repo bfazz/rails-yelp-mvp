@@ -1,0 +1,20 @@
+
+<%= @restaurant.name %>
+<%= @restaurant.address %>
+<%= @restaurant.phone_number %>
+<%= @restaurant.category %>
+
+<%= link_to "edit", edit_restaurant_path %>
+
+<%= link_to "delete", restaurant_path(@restaurant), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} %>
+
+<%= simple_form_for([@restaurant, @review]) do |f| %>
+  <%= f.input :content %>
+  <%= f.input :rating %>
+  <%= f.submit %>
+<% end %>
+
+<% @restaurant.reviews.each do |review|  %>
+  <p><%= review.rating %></p>
+  <p><%= review.content %></p>
+<% end  %>
